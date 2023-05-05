@@ -8,7 +8,12 @@ export function roots(a: number, b: number, c: number): [number, number]|null {
     return [pos, neg];
 }
 
-export function vertex(a: number, b: number): number {
-    let vertex = (b * -1) / (2 * a);
-    return vertex;
+export function vertex(a: number, b: number, c: number): [number, number] {
+    let x = (b * -1) / (2 * a);
+    let y = (a * (Math.pow(x, 2))) + (b * x) + c;
+    return [x, y];
+}
+
+export function roundTwo(i: number) {
+    return +(Math.round(Number(i.toString() + "e+2"))  + "e-2");
 }
