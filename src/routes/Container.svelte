@@ -9,8 +9,6 @@
     let c = 0;
     $: calculatedRoots = roots(a, b, c);
     $: calculatedVertex = vertex(a, b, c);
-
-    $: console.log(a, b, c);
 </script>
 
 <div class="container-md bg-secondary text-white p-5 my-5 mx-auto">
