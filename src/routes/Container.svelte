@@ -1,6 +1,5 @@
 <script lang="ts">
     import CoefficientField from "./CoefficientField.svelte";
-    import Button from "./Button.svelte";
     import Katex from "./Katex.svelte";
     import { roots, vertex, roundTwo } from "./calculation";
 
