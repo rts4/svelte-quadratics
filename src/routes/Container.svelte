@@ -1,13 +1,28 @@
 <script lang="ts">
     import CoefficientField from "./CoefficientField.svelte";
+    import ClearButton from "./ClearButton.svelte";
     import Katex from "./Katex.svelte";
     import { roots, vertex, roundTwo } from "./calculation";
 
     let a = 0;
     let b = 0;
     let c = 0;
+    $: {
+        if (a > 999 || a < -999)
+            a = 0;
+        else if (b > 999 || b < -999)
+            b = 0;
+        else if (c > 999 || c < -999)
+            c = 0;
+    }
     $: calculatedRoots = roots(a, b, c);
     $: calculatedVertex = vertex(a, b, c);
+
+    function clearValues() {
+        a = 0;
+        b = 0;
+        c = 0;
+    }
 </script>
 
 <div class="container-md bg-secondary text-white p-5 my-5 mx-auto">
@@ -19,6 +34,8 @@
     <CoefficientField bind:coefficient_value={a} coefficient_name="a" />
     <CoefficientField bind:coefficient_value={b} coefficient_name="b" />
     <CoefficientField bind:coefficient_value={c} coefficient_name="c" />
+    <ClearButton on:clear_values={clearValues} />
+    <br />
     <br />
     <p>Standard form: <Katex math={`\\f\\relax{x} = ${a === null ? 0 : a != 1 ? a : ""}x^2 ${b === null || b === 0 ? "" : (b == 1 || b == -1) ? `${b < 0 ? '-' : '+'} x` : b < 0 ? `- ${Math.abs(b)}x` : `+ ${b}x`} ${c === null || c === 0 ? "" : c < 0 ? `- ${Math.abs(c)}` : `+ ${c}`}`} /></p>
     {#if calculatedRoots !== null}
