@@ -37,7 +37,9 @@
     <ClearButton on:clear_values={clearValues} />
     <br />
     <br />
-    <p>Standard form: <Katex math={`\\f\\relax{x} = ${a === null ? 0 : a != 1 ? a : ""}x^2 ${b === null || b === 0 ? "" : (b == 1 || b == -1) ? `${b < 0 ? '-' : '+'} x` : b < 0 ? `- ${Math.abs(b)}x` : `+ ${b}x`} ${c === null || c === 0 ? "" : c < 0 ? `- ${Math.abs(c)}` : `+ ${c}`}`} /></p>
+    {#if a !== 0 && a !== null}
+        <p>Standard form: <Katex math={`\\f\\relax{x} = ${a === null ? 0 : a != 1 ? a : ""}x^2 ${b === null || b === 0 ? "" : (b == 1 || b == -1) ? `${b < 0 ? '-' : '+'} x` : b < 0 ? `- ${Math.abs(b)}x` : `+ ${b}x`} ${c === null || c === 0 ? "" : c < 0 ? `- ${Math.abs(c)}` : `+ ${c}`}`} /></p>
+    {/if}
     {#if calculatedRoots !== null}
         {#if !(isNaN(calculatedRoots[0]) || isNaN(calculatedRoots[1]))}
             <p>Factored form: <Katex math={`\\f\\relax{x} = (x ${calculatedRoots[0] < 0 ? `+ ${Math.abs(roundTwo(calculatedRoots[0]))}` : `- ${roundTwo(calculatedRoots[0])}`})(x ${calculatedRoots[1] < 0 ? `+ ${Math.abs(roundTwo(calculatedRoots[1]))}` : `- ${roundTwo(calculatedRoots[1])}`})`} /></p>
