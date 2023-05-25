@@ -47,7 +47,7 @@
     {/if}
     {#if calculatedVertex !== null}
         {#if !(isNaN(calculatedVertex[0]) || isNaN(calculatedVertex[1]))}
-            <p>Vertex form: <Katex math={`\\f\\relax{x} = (x ${calculatedVertex[0] < 0 ? `+ ${Math.abs(roundTwo(calculatedVertex[0]))}` : `- ${roundTwo(calculatedVertex[0])}`})^2 ${calculatedVertex[0] < 0 ? `- ${Math.abs(roundTwo(calculatedVertex[1]))}` : `+ ${roundTwo(calculatedVertex[1])}`}`} /></p>
+            <p>Vertex form: <Katex math={`\\f\\relax{x} = (x ${calculatedVertex[0] < 0 ? `+ ${Math.abs(roundTwo(calculatedVertex[0]))}` : `- ${roundTwo(calculatedVertex[0])}`})^2 ${calculatedVertex[1] < 0 ? `- ${Math.abs(roundTwo(calculatedVertex[1]))}` : `+ ${roundTwo(calculatedVertex[1])}`}`} /></p>
         {/if}
     {/if}
 </div>
