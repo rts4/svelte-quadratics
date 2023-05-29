@@ -1,16 +1,21 @@
 export function roots(a: number, b: number, c: number): [number, number]|null {
-    let discrim = Math.pow(b, 2) - (4 * a * c);
+    const discrim = Math.pow(b, 2) - (4 * a * c);
     if (discrim < 0) return null;
     
-    let pos = ((b * -1) + Math.sqrt(discrim)) / (2 * a);
-    let neg = ((b * -1) - Math.sqrt(discrim)) / (2 * a);
+    const pos = ((b * -1) + Math.sqrt(discrim)) / (2 * a);
+    const neg = ((b * -1) - Math.sqrt(discrim)) / (2 * a);
+
+    if (pos === 0 || neg === 0) return null;
 
     return [pos, neg];
 }
 
-export function vertex(a: number, b: number, c: number): [number, number] {
-    let x = (b * -1) / (2 * a);
-    let y = (a * (Math.pow(x, 2))) + (b * x) + c;
+export function vertex(a: number, b: number, c: number): [number, number]|null {
+    const x = (b * -1) / (2 * a);
+    const y = (a * (Math.pow(x, 2))) + (b * x) + c;
+
+    if (x === 0 || y === 0) return null
+
     return [x, y];
 }
 
