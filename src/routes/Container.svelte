@@ -25,29 +25,48 @@
     }
 </script>
 
-<div class="container-md bg-secondary text-white p-5 my-5 mx-auto">
-    <h3>Quadratic Calculator</h3>
-    <br />
-    <Katex math={"ax^2+bx+c\\implies x=\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}"} displayMode />
-    <br />
-    <p>Input the three coefficients in your relation in the fields below.</p>
-    <CoefficientField bind:coefficient_value={a} coefficient_name="a" />
-    <CoefficientField bind:coefficient_value={b} coefficient_name="b" />
-    <CoefficientField bind:coefficient_value={c} coefficient_name="c" />
-    <ClearButton on:clear_values={clearValues} />
-    <br />
-    <br />
-    {#if a !== 0 && a !== null}
-        <p>Standard form: <Katex math={`\\f\\relax{x} = ${a === null ? 0 : a != 1 ? a : ""}x^2 ${b === null || b === 0 ? "" : (b == 1 || b == -1) ? `${b < 0 ? '-' : '+'} x` : b < 0 ? `- ${Math.abs(b)}x` : `+ ${b}x`} ${c === null || c === 0 ? "" : c < 0 ? `- ${Math.abs(c)}` : `+ ${c}`}`} /></p>
-    {/if}
-    {#if calculatedRoots !== null}
-        {#if !(isNaN(calculatedRoots[0]) || isNaN(calculatedRoots[1]))}
-            <p>Factored form: <Katex math={`\\f\\relax{x} = ${a}(x ${calculatedRoots[0] < 0 ? `+ ${Math.abs(roundTwo(calculatedRoots[0]))}` : `- ${roundTwo(calculatedRoots[0])}`})(x ${calculatedRoots[1] < 0 ? `+ ${Math.abs(roundTwo(calculatedRoots[1]))}` : `- ${roundTwo(calculatedRoots[1])}`})`} /></p>
+<div class="flex h-screen place-items-center">
+    <div class="container mx-auto p-5 my-5 text-white rounded-3xl flex flex-wrap justify-center justify-items-center quicksand-reg" id="main-container">
+        <h3 class="text-2xl rounded-3xl p-2" id="mid-section">Quadratic Calculator</h3>
+        <br />
+        <Katex math={"ax^2+bx+c\\implies x=\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}"} displayMode />
+        <br />
+        <p class="w-full text-center p-1">Input the three coefficients in your relation in the fields below.</p>
+        <CoefficientField bind:coefficient_value={a} coefficient_name="a" />
+        <CoefficientField bind:coefficient_value={b} coefficient_name="b" />
+        <CoefficientField bind:coefficient_value={c} coefficient_name="c" />
+        <ClearButton on:clear_values={clearValues} />
+        <br />
+        <br />
+        {#if a !== 0 && a !== null}
+            <p class="w-full justify-center text-center p-4">Standard form: <Katex math={`\\f\\relax{x} = ${a === null ? 0 : a != 1 ? a : ""}x^2 ${b === null || b === 0 ? "" : (b == 1 || b == -1) ? `${b < 0 ? '-' : '+'} x` : b < 0 ? `- ${Math.abs(b)}x` : `+ ${b}x`} ${c === null || c === 0 ? "" : c < 0 ? `- ${Math.abs(c)}` : `+ ${c}`}`} /></p>
         {/if}
-    {/if}
-    {#if calculatedVertex !== null}
-        {#if !(isNaN(calculatedVertex[0]) || isNaN(calculatedVertex[1]))}
-            <p>Vertex form: <Katex math={`\\f\\relax{x} = ${a}(x ${calculatedVertex[0] < 0 ? `+ ${Math.abs(roundTwo(calculatedVertex[0]))}` : `- ${roundTwo(calculatedVertex[0])}`})^2 ${calculatedVertex[1] < 0 ? `- ${Math.abs(roundTwo(calculatedVertex[1]))}` : `+ ${roundTwo(calculatedVertex[1])}`}`} /></p>
+        {#if calculatedRoots !== null}
+            {#if !(isNaN(calculatedRoots[0]) || isNaN(calculatedRoots[1]))}
+                <p class="w-full justify-center text-center p-2">Factored form: <Katex math={`\\f\\relax{x} = ${a}(x ${calculatedRoots[0] < 0 ? `+ ${Math.abs(roundTwo(calculatedRoots[0]))}` : `- ${roundTwo(calculatedRoots[0])}`})(x ${calculatedRoots[1] < 0 ? `+ ${Math.abs(roundTwo(calculatedRoots[1]))}` : `- ${roundTwo(calculatedRoots[1])}`})`} /></p>
+            {/if}
         {/if}
-    {/if}
+        {#if calculatedVertex !== null}
+            {#if !(isNaN(calculatedVertex[0]) || isNaN(calculatedVertex[1]))}
+                <p class="w-full justify-center text-center p-2">Vertex form: <Katex math={`\\f\\relax{x} = ${a}(x ${calculatedVertex[0] < 0 ? `+ ${Math.abs(roundTwo(calculatedVertex[0]))}` : `- ${roundTwo(calculatedVertex[0])}`})^2 ${calculatedVertex[1] < 0 ? `- ${Math.abs(roundTwo(calculatedVertex[1]))}` : `+ ${roundTwo(calculatedVertex[1])}`}`} /></p>
+            {/if}
+        {/if}
+    </div>
 </div>
+
+<style lang="postcss">
+    :global(html) {
+        background-color: rgb(15, 15, 15);
+        overflow: scroll;
+    }
+    #main-container {
+        background-color: rgb(30, 30, 30);
+    }
+    #mid-section {
+        background-color: rgb(45, 45, 45);
+    }
+    .quicksand-reg {
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 400;
+    }
+</style>
